@@ -1,5 +1,5 @@
-const config = 
-  locales: [
+const config ={
+  locale: [
     // 'ar',
     // 'fr',
     // 'cs',
