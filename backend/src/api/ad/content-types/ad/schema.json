@@ -2,43 +2,62 @@
   "kind": "collectionType",
   "collectionName": "ads",
   "info": {
-    "singularName": "ad",
-    "pluralName": "ads",
-    "displayName": "ad",
+    "name": "ad",
     "description": ""
   },
   "options": {
+    "increments": true,
+    "timestamps": true,
     "draftAndPublish": true
   },
-  "pluginOptions": {},
   "attributes": {
     "title": {
       "type": "string",
       "required": true,
-      "maxLength": 100
+      "maxLength": 100,
+      "minLength": 10
     },
-    "advertiserID": {
-      "type": "uid",
-      "required": true
+    "content": {
+      "type": "text",
+      "required": true,
+      "maxLength": 5000,
+      "minLength": 20
     },
-    "clicks": {
-      "type": "biginteger"
-    },
-    "imprission": {
-      "type": "biginteger"
-    },
-    "adType": {
-      "type": "string"
-    },
-    "image": {
+    "ad_images": {
+      "collection": "file",
+      "via": "related",
       "allowedTypes": [
-        "images",
-        "files",
-        "videos",
-        "audios"
+        "images"
       ],
-      "type": "media",
-      "multiple": false
+      "plugin": "upload",
+      "required": false,
+      "pluginOptions": {}
+    },
+    "user": {
+      "via": "ads",
+      "plugin": "users-permissions",
+      "model": "user"
+    },
+    "tags": {
+      "collection": "tag",
+      "via": "ads"
+    },
+    "category": {
+      "model": "category",
+      "via": "ads"
+    },
+    "likes": {
+      "type": "biginteger",
+      "default": "0",
+      "unique": false
+    },
+    "comments": {
+      "via": "ad",
+      "collection": "comment"
+    },
+    "contactNumber": {
+      "type": "string",
+      "required": false
     }
   }
 }
