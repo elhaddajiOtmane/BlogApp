@@ -12,6 +12,6 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: Install Strapi Dependencies
-      run: npm install --legacy-peer-deps 
+      run: npm -i 
     - name: Build Strapi App
       run: npm run build
