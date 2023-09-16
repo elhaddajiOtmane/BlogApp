@@ -2,9 +2,9 @@ name: Strapi CI
 
 on:
   push:
-    branches: [ "master" ] # Change to your default branch name
+    branches: [ "master" ] # Updated to use "master" as the default branch
   pull_request:
-    branches: [ "master" ] # Change to your default branch name
+    branches: [ "master" ] # Updated to use "master" as the default branch
 
 jobs:
   build:
@@ -13,7 +13,7 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [18.x] # Ensure Node.js 16.x is used for Strapi
+        node-version: [18.x] # Use Node.js 18.x for Strapi
 
     steps:
     - uses: actions/checkout@v2
@@ -21,7 +21,7 @@ jobs:
       uses: actions/setup-node@v2
       with:
         node-version: ${{ matrix.node-version }}
-    - run: npm ci
+    - run: npm install # To generate package-lock.json if it doesn't exist
     - run: npm run build
     - name: Start Strapi Server
       run: npm start

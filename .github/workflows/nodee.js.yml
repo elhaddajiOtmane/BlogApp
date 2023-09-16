@@ -1,0 +1,17 @@
+name: Build Check
+
+on:
+  push:
+    branches:
+      - master 
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Install Strapi Dependencies
+      run: npm -i 
+    - name: Build Strapi App
+      run: npm run build
